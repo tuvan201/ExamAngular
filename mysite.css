@@ -1,0 +1,35 @@
+body{
+    background-color: darkblue;
+}
+.root{
+    margin: auto;
+    border: 5px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+.login{
+    width:300px ;
+    height: 200px;
+}
+.title{
+    text-align: center;
+}
+.underline-button {
+    background-color: transparent;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+  }
+  .studentInfo,.StudentList{
+    width: fit-content;
+  }
+  .StudentList>table{
+    width: 100%;
+  }
+.padding{
+    padding: 5px 10px 5px 10px;
+}
+  

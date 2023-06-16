@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student management page</title>
+    <link rel="stylesheet" href="mysite.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="javascrip.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div style="border:3px solid white;width: fit-content; margin: auto;padding: 1px;">
+        <div class="root">
+            <div class="login" ng-show="loginStatus">
+                <div class="title">
+                    <h2>Login</h2>
+                </div>
+                <div class="formLogin">
+                    <table>
+                        <tr>
+                            <td>username: </td>
+                            <td><input type="text" ng-model="txtuser" id="txtuser"></td>
+                        </tr>
+                        <tr>
+                            <td>password: </td>
+                            <td><input type="password" ng-model="txtpassword" id="txtpassword"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div style="display: flex;justify-content: center;">
+                                    <button ng-click="login()">Login</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="studentInfo" ng-show="studentInfoStatus">
+                <div class="title">
+                    <h2>Student management</h2>
+                </div>
+                    <table>
+                        <tr>
+                            <td>Student Name:</td>
+                            <td><input type="text" placeholder="input student name" ng-model="txtnameStudent" required></td>
+                        </tr>
+                        <tr>
+                            <td>Student DOB:</td>
+                            <td><input type="date" id="txtdate" ng-model="txtdate" required></td>
+                        </tr>
+                        <tr>
+                            <td>Student Gender:</td>
+                            <td>
+                                <span>
+                                    <input type="radio" name="txtGender" value="Male" required>
+                                    <label for="txtGender">Male</label>
+                                </span>
+                                <span>
+                                    <input type="radio" name="txtGender" value="Female" required>
+                                    <label for="txtGender">Female</label>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Student Language:</td>
+                            <td>
+                                <span>
+                                    <input type="checkbox" name="Subject" value="English" id=""> English
+                                </span>
+                                <span>
+                                    <input type="checkbox" name="Subject" value="VietNamese" id=""> VietNamese
+                                </span>
+                                <span>
+                                    <input type="checkbox" name="Subject" value="Japanese" id=""> Japanese
+                                </span>
+                                <span>
+                                    <input type="checkbox" name="Subject" value="Chinese" id=""> Chinese
+                                </span>
+                                <span>
+                                    <input type="checkbox" name="Subject" value="French" id=""> French
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Student Class:</td>
+                            <td>
+                                <span>
+                                    <Select ng-model="class" required>
+                                        <option value="C1610L" selected>C1610L</option>
+                                        <option value="C1608L">C1608L</option>
+                                        <option value="C1710L">C1609L</option>
+                                        <option ng-repeat="class in listClass">{{class}}</option>
+                                    </Select>
+                                </span>
+                                <span>
+                                    <button class="underline-button" ng-click="addClass()">Add class</button>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="add" ng-click="addStudent()">
+                            </td>
+                        </tr>
+                       
+                    </table>
+            </div>
+            <div class="StudentList" ng-show="studentListStatus">
+                <div class="title">
+                    <h2>Student List</h2>
+                    <table border="1" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Language</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="item in listStudent">
+                            <td class="padding">{{item.name}}</td>
+                            <td class="padding">{{item.date | date :"dd/MM/yyyy"}}</td>
+                            <td class="padding">{{item.gender}}</td>
+                            <td class="padding"><span ng-repeat="subject in item.subjects">{{subject}} </span></td>
+                            <td class="padding">{{item.class}}</td>
+                            <td class="padding"><button class="underline-button" ng-click="confirmDelete($index)">Delete</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
